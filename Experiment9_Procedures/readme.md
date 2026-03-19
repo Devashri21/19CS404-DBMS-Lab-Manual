@@ -58,9 +58,10 @@ Key Differences:
 - Inside the procedure, compute the square of the input number.
 - Use DBMS_OUTPUT.PUT_LINE to display the result.
 - Call the procedure with a number as input.
-```
-*Program:*
-sql
+
+**Program:**
+
+```sql
 SET SERVEROUTPUT ON;
 
 CREATE OR REPLACE PROCEDURE find_square (num IN NUMBER) IS
@@ -94,9 +95,10 @@ Square of 6 is 36
 - Return the result using the RETURN statement.
 - Call the function using a SELECT statement or in an anonymous block.
   
-```
-*Program:*
-sql
+
+**Program:**
+
+```sql
 SET SERVEROUTPUT ON;
 
 CREATE OR REPLACE FUNCTION get_factorial (num IN NUMBER) RETURN NUMBER IS
@@ -135,9 +137,10 @@ Factorial of 5 is 120
 - Accept an input parameter.
 - Use the MOD function to check if the number is divisible by 2.
 - Display whether it is Even or Odd using DBMS_OUTPUT.PUT_LINE.
-```
-*Program:*
-sql
+  
+
+**Program:**
+```sql
 SET SERVEROUTPUT ON;
 
 CREATE OR REPLACE PROCEDURE check_even_odd (num IN NUMBER) IS
@@ -158,7 +161,7 @@ END;
 ```
 
 
-*Output:*
+**Output:**
 
 ![image](https://github.com/user-attachments/assets/eb0b9436-1e78-4625-9320-9f125cc0aede)
 
@@ -175,9 +178,10 @@ END;
 - Use a loop to reverse the digits of the number.
 - Return the reversed number.
 - Call the function and display the output.
-```
-**.Program:*
-sql
+
+**Program:**
+
+```sql
 SET SERVEROUTPUT ON;
 
 CREATE OR REPLACE FUNCTION reverse_number (num IN NUMBER) RETURN NUMBER IS
@@ -191,7 +195,6 @@ BEGIN
     RETURN rev_num;
 END;
 /
-```
 -- Calling the function and displaying output
 DECLARE
     rev_result NUMBER;
@@ -200,7 +203,7 @@ BEGIN
     DBMS_OUTPUT.PUT_LINE('Reversed number of 1234 is ' || rev_result);
 END;
 /
-
+```
 
 
 ## Output:*
@@ -214,15 +217,16 @@ Reversed number of 1234 is 4321
 ---
 
 ## 5. Write a PL/SQL Procedure to Display the Multiplication Table of a Number
-```
+
 
 ### Steps:
 - Create a procedure named print_table.
 - Accept an input number.
 - Use a loop from 1 to 10 to multiply the input number.
 - Display the multiplication results using DBMS_OUTPUT.PUT_LINE.
-```
-## Program:
+
+**Program:**
+
 ```
 sql
 SET SERVEROUTPUT ON;
@@ -244,10 +248,8 @@ END;
 ```
 
 ## Output:*
-```
 
 ![image](https://github.com/user-attachments/assets/12625873-6b80-4936-8276-50f607cf3f82)
-
 
 * Expected Output:*  
 Multiplication table of 5:  
