@@ -38,123 +38,271 @@ DROP VIEW view_name;
 
 **Question 1**
 --
--- Paste Question 1 here
+Write a SQL query to List departments with names longer than the average length
 
 ```sql
--- Paste your SQL code below for Question 1
+SELECT department_id AS depar, department_name
+FROM Departments
+WHERE LENGTH(department_name)>(
+    SELECT AVG(LENGTH(department_name))
+    FROM Departments
+);
 ```
 
 **Output:**
 
-![Output1](output.png)
+<img width="1172" height="384" alt="image" src="https://github.com/user-attachments/assets/6f9b6852-74bc-42e6-b9f9-008080f9802c" />
+
 
 **Question 2**
 ---
--- Paste Question 2 here
+Write a SQL query to retrieve all columns from the CUSTOMERS table for customers whose AGE is LESS than $30
+
+Sample table: CUSTOMERS
+
+ID          NAME        AGE         ADDRESS     SALARY
+----------  ----------  ----------  ----------  ----------
+
+1          Ramesh     32              Ahmedabad     2000
+2          Khilan        25              Delhi                 1500
+3          Kaushik      23              Kota                  2000
+4          Chaitali       25             Mumbai            6500
+5          Hardik        27              Bhopal              8500
+6          Komal         22              Hyderabad       4500
+
+7           Muffy          24              Indore            10000
+
 
 ```sql
--- Paste your SQL code below for Question 2
+SELECT *
+FROM CUSTOMERS
+WHERE AGE<30;
 ```
 
 **Output:**
 
-![Output2](output.png)
+<img width="1166" height="561" alt="image" src="https://github.com/user-attachments/assets/284dc767-ebbb-4b05-a50e-77853a70fae8" />
+
 
 **Question 3**
 ---
--- Paste Question 3 here
+Write a SQL query to Find employees who have an age less than the average age of employees with incomes over 2.5 Lakh
+
+Employee Table:
+
+name             type
+------------   ---------------
+id                    INTEGER
+name              TEXT
+age                 INTEGER
+city                 TEXT
+income           INTEGER
 
 ```sql
--- Paste your SQL code below for Question 3
+SELECT id, name, age, city, income
+FROM Employee
+WHERE age<(
+    SELECT AVG(age)
+    FROM Employee
+    WHERE income>250000
+);
 ```
 
 **Output:**
 
-![Output3](output.png)
+<img width="1172" height="510" alt="image" src="https://github.com/user-attachments/assets/91da6453-70dd-45b9-9fc1-2a967d900444" />
+
 
 **Question 4**
 ---
--- Paste Question 4 here
+Write a SQL query to Identify customers whose city is different from the city of the customer with the highest ID
+
+SAMPLE TABLE: customer
+
+name             type
+---------------  ---------------
+id               INTEGER
+name             TEXT
+city             TEXT
+email            TEXT
+phone            INTEGER
 
 ```sql
--- Paste your SQL code below for Question 4
+SELECT id, name, city, email, phone
+FROM customer
+WHERE city!=(
+    SELECT city
+    FROM customer
+    WHERE id=(SELECT MAX(id) FROM customer )
+);
 ```
 
 **Output:**
 
-![Output4](output.png)
+<img width="1170" height="481" alt="image" src="https://github.com/user-attachments/assets/dd9c2701-9fe3-4a4c-aed3-ffdab6a66ffd" />
+
 
 **Question 5**
 ---
--- Paste Question 5 here
+From the following tables write a SQL query to find the order values greater than the average order value of 10th October 2012. Return ord_no, purch_amt, ord_date, customer_id, salesman_id.
+
+Note: date should be yyyy-mm-dd format
+
+ORDERS TABLE
+
+name            type
+----------     ----------
+ord_no          int
+purch_amt    real
+ord_date       text
+customer_id  int
+salesman_id  int
 
 ```sql
--- Paste your SQL code below for Question 5
+SELECT ord_no, purch_amt, ord_date, customer_id, salesman_id
+FROM ORDERS
+WHERE purch_amt>(
+    SELECT AVG(purch_amt)
+    FROM ORDERS
+    WHERE ord_date='2012-10-10'
+);
 ```
 
 **Output:**
 
-![Output5](output.png)
+<img width="1173" height="459" alt="image" src="https://github.com/user-attachments/assets/2a66beb0-e9bf-41ac-b0ee-389a1f791395" />
+
 
 **Question 6**
 ---
--- Paste Question 6 here
+From the following tables, write a SQL query to find those salespeople who earned the maximum commission. Return ord_no, purch_amt, ord_date, and salesman_id.
+
+salesman table
+
+name             type
+---------------  ---------------
+salesman_id      numeric(5)
+name                 varchar(30)
+city                    varchar(15)
+commission       decimal(5,2)
+
+orders table
+
+name             type
+---------------  --------
+order_no         int
+purch_amt        real
+order_date       text
+customer_id      int
+salesman_id      int
 
 ```sql
--- Paste your SQL code below for Question 6
+SELECT o.ord_no, o.purch_amt, o.ord_date, o.salesman_id
+FROM orders o
+JOIN salesman s ON o.salesman_id = s.salesman_id
+WHERE s.commission=(
+    SELECT MAX(commission)
+    FROM salesman
+);
 ```
 
 **Output:**
 
-![Output6](output.png)
+<img width="1175" height="456" alt="image" src="https://github.com/user-attachments/assets/7e566ed8-a335-4ce3-939b-10db1b67cacb" />
+
 
 **Question 7**
 ---
--- Paste Question 7 here
+Write a SQL query to Retrieve the names and cities of customers who have the same city as customers with IDs 3 and 7
+
+SAMPLE TABLE: customer
+
+name             type
+---------------  ---------------
+id               INTEGER
+name             TEXT
+city             TEXT
+email            TEXT
+phone            INTEGER
 
 ```sql
--- Paste your SQL code below for Question 7
+SELECT name, city
+FROM customer
+WHERE city IN(
+    SELECT city
+    FROM customer
+    WHERE id IN (3,7)
+);
 ```
 
 **Output:**
 
-![Output7](output.png)
+<img width="1171" height="446" alt="image" src="https://github.com/user-attachments/assets/9aaec198-cd8e-4751-880f-1ae9540e4ab1" />
+
 
 **Question 8**
 ---
--- Paste Question 8 here
+From the following tables, write a SQL query to find all orders generated by the salespeople who may work for customers whose id is 3007. Return ord_no, purch_amt, ord_date, customer_id, salesman_id.
 
 ```sql
--- Paste your SQL code below for Question 8
+SELECT *
+FROM Orders
+WHERE salesman_id IN(
+    SELECT salesman_id
+    FROM Orders
+    WHERE customer_id=3007
+);
 ```
 
 **Output:**
 
-![Output8](output.png)
+<img width="1170" height="433" alt="image" src="https://github.com/user-attachments/assets/bc4d5cf5-bf34-4cd1-9279-f45e47605393" />
+
 
 **Question 9**
 ---
--- Paste Question 9 here
+From the following tables write a SQL query to find all orders generated by New York-based salespeople. Return ord_no, purch_amt, ord_date, customer_id, salesman_id.
 
 ```sql
--- Paste your SQL code below for Question 9
+SELECT o.ord_no, o.purch_amt, o.ord_date, o.customer_id, o.salesman_id
+FROM Orders o
+JOIN Salesman s ON o.salesman_id = s.salesman_id
+WHERE s.city='New York';
 ```
 
 **Output:**
 
-![Output9](output.png)
+<img width="1174" height="462" alt="image" src="https://github.com/user-attachments/assets/4ce70048-ab72-4b08-be39-cddb24dd23de" />
+
 
 **Question 10**
 ---
--- Paste Question 10 here
+Write a SQL query to retrieve all columns from the CUSTOMERS table for customers whose salary is greater than $1500.
+
+Sample table: CUSTOMERS
+
+ID          NAME        AGE         ADDRESS     SALARY
+----------  ----------  ----------  ----------  ----------
+
+1          Ramesh     32              Ahmedabad     2000
+2          Khilan        25              Delhi                 1500
+3          Kaushik      23              Kota                  2000
+4          Chaitali       25             Mumbai            6500
+5          Hardik        27              Bhopal              8500
+6          Komal         22              Hyderabad       4500
+
+7           Muffy          24              Indore            10000
 
 ```sql
--- Paste your SQL code below for Question 10
+SELECT *
+FROM CUSTOMERS
+WHERE SALARY>1500;
 ```
 
 **Output:**
 
-![Output10](output.png)
+<img width="1173" height="605" alt="image" src="https://github.com/user-attachments/assets/efa2821b-8d68-4508-88a4-f5a38c81e9ce" />
+
 
 
 ## RESULT
