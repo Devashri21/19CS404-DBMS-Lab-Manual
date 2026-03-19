@@ -38,123 +38,185 @@ HAVING condition;
 
 **Question 1**
 --
--- Paste Question 1 here
+Write a SQL query to find the total number of unique cities in the customer table?
+
+Table: customer
+
+name        type
+----------  ----------
+id          INTEGER
+name        TEXT
+city        TEXT
+email       TEXT
+phone       INTEGER
 
 ```sql
--- Paste your SQL code below for Question 1
+SELECT COUNT(DISTINCT city) AS unique_cities
+FROM customer;
 ```
 
 **Output:**
 
-![Output1](output.png)
+<img width="1170" height="293" alt="image" src="https://github.com/user-attachments/assets/2ede1837-5d28-4af1-b004-5a0670b0288f" />
+
 
 **Question 2**
 ---
--- Paste Question 2 here
+Write a SQL query to find the difference between the maximum and minimum price of fruits?
+
+Table: fruits
+
+name        type
+----------  ----------
+id          INTEGER
+name        TEXT
+unit        TEXT
+inventory   INTEGER
+price       REAL
 
 ```sql
--- Paste your SQL code below for Question 2
+SELECT MAX(price)-MIN(price) AS price_diff
+FROM fruits;
 ```
 
 **Output:**
 
-![Output2](output.png)
+<img width="1172" height="295" alt="image" src="https://github.com/user-attachments/assets/4f8a2f2b-ad10-4b8b-9b08-2de2b9195e6c" />
+
 
 **Question 3**
 ---
--- Paste Question 3 here
+Write a SQL query to Calculate the average income of the employees with names starting with 'A': 
+
+Table: employee
+
+name        type
+----------  ----------
+id          INTEGER
+name        TEXT
+age         INTEGER
+city        TEXT
+income      INTEGER
 
 ```sql
--- Paste your SQL code below for Question 3
+SELECT AVG(income) AS avg_income
+FROM employee
+WHERE name LIKE 'A%';
 ```
 
 **Output:**
 
-![Output3](output.png)
+<img width="1173" height="291" alt="image" src="https://github.com/user-attachments/assets/d8d47dd1-9c47-4983-ac1d-80b7c31f9cc0" />
+
 
 **Question 4**
 ---
--- Paste Question 4 here
+How many appointments are scheduled for each doctor?
 
 ```sql
--- Paste your SQL code below for Question 4
+SELECT DoctorID, COUNT(AppointmentID) AS TotalAppointments
+FROM Appointments
+GROUP BY DoctorID;
 ```
 
 **Output:**
 
-![Output4](output.png)
+<img width="1171" height="612" alt="image" src="https://github.com/user-attachments/assets/e5970c35-fbf5-4cac-a0dd-b09b5cbfbc74" />
+
 
 **Question 5**
 ---
--- Paste Question 5 here
+How many prescriptions were written in each frequency category (e.g., once daily, twice daily)?
 
 ```sql
--- Paste your SQL code below for Question 5
+SELECT Frequency, COUNT(PrescriptionID) AS TotalPrescriptions
+FROM Prescriptions
+GROUP BY Frequency;
 ```
 
 **Output:**
 
-![Output5](output.png)
+<img width="1170" height="514" alt="image" src="https://github.com/user-attachments/assets/fe7b735f-dfa2-4eba-99fd-cfc5c8741129" />
+
 
 **Question 6**
 ---
--- Paste Question 6 here
+How many patients are there in each city?
 
 ```sql
--- Paste your SQL code below for Question 6
+SELECT Address, COUNT(PatientID) AS TotalPatients
+FROM Patients
+GROUP BY Address;
 ```
 
 **Output:**
 
-![Output6](output.png)
+<img width="1164" height="388" alt="image" src="https://github.com/user-attachments/assets/bfa80926-6c93-45aa-8793-5838ada1b94f" />
+
 
 **Question 7**
 ---
--- Paste Question 7 here
+Write a SQL query to identify the cities (addresses) where the average salary is greater than Rs. 5000, as per the "customer1" table.
 
 ```sql
--- Paste your SQL code below for Question 7
+SELECT address, AVG(salary) AS "AVG(salary)"
+FROM customer1
+GROUP BY address
+HAVING AVG(salary)>5000;
 ```
 
 **Output:**
 
-![Output7](output.png)
+<img width="1175" height="417" alt="image" src="https://github.com/user-attachments/assets/114d9cfd-0a35-4033-abae-0979a8c18a20" />
+
 
 **Question 8**
 ---
--- Paste Question 8 here
+Write the SQL query that accomplishes the grouping of data by addresses, calculates the sum of salaries for each address, and excludes addresses where the total salary sum is not greater than 2000.
 
 ```sql
--- Paste your SQL code below for Question 8
+SELECT address, SUM(salary) AS "SUM(salary)"
+FROM customer1
+GROUP BY address
+HAVING SUM(salary)>2000;
 ```
 
 **Output:**
 
-![Output8](output.png)
+<img width="1167" height="462" alt="image" src="https://github.com/user-attachments/assets/6fe730cf-b583-4438-a057-b8b5475267dd" />
+
 
 **Question 9**
 ---
--- Paste Question 9 here
+Write the SQL query that achieves the grouping of data by age intervals using the expression (age/5)5, calculates the total salary sum for each group, and excludes groups where the total salary sum is not greater than 5000.
 
 ```sql
--- Paste your SQL code below for Question 9
+SELECT (age/5)*5 AS age_group, SUM(salary)
+FROM customer1
+GROUP BY age_group
+HAVING SUM(salary)>5000;
 ```
 
 **Output:**
 
-![Output9](output.png)
+<img width="1173" height="346" alt="image" src="https://github.com/user-attachments/assets/596b77e8-16de-4c0c-9086-17369fabbe40" />
+
 
 **Question 10**
 ---
--- Paste Question 10 here
+Write the SQL query that accomplishes the grouping of data by joining date (jdate), calculates the total work hours for each date, and excludes dates where the total work hour sum is not greater than 40.
 
 ```sql
--- Paste your SQL code below for Question 10
+SELECT jdate, SUM(workhour)
+FROM employee1
+GROUP BY jdate
+HAVING SUM(workhour)>40;
 ```
 
 **Output:**
 
-![Output10](output.png)
+<img width="1175" height="365" alt="image" src="https://github.com/user-attachments/assets/a4538c98-eb81-4880-8d51-6e6ce14f9165" />
+
 
 
 ## RESULT
